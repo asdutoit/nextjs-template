@@ -5,6 +5,8 @@ on:
     types: [closed]
     branches: [develop, main, stage]
 
+permissions: write-all
+
 jobs:
   update_version_and_tag:
     # if: github.event.pull_request.merged == true
