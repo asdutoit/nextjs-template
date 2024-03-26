@@ -61,7 +61,7 @@ export default function VersionFrame() {
             <div className="font-bold">
               Dynamic Version: <span className="text-black">{version}</span>
             </div>
-            <div className="font-bold">
+            <div className="font-bold text-red-500">
               Package.json Version:{" "}
               <span className="text-black">{pjson.version}</span>
             </div>

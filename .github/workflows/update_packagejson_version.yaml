@@ -2,8 +2,10 @@ name: Update Package.json Version
 
 on:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened, closed]
     branches: [develop, main, stage]
+
+permissions: write-all
 
 jobs:
   update_version_and_tag:
@@ -13,20 +15,28 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      - name: Get latest tag
-        id: latest_tag
-        run: echo "::set-output name=tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
+      - name: Get and update git release tag
+        id: git-tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        # run: echo ::set-output name=tag::$(git describe --tags --abbrev=0 || 'latest')
+
+      - name: Print the tag
+        run: echo ${{ steps.git-tag.outputs.tag }}
 
       - name: Update package.json version
         id: update_pkg_version
         run: |
-          npm version patch --no-git-tag-version
+          npm version "${{ steps.git-tag.outputs.tag }}" --no-git-tag-version
           echo "::set-output name=new_version::$(node -p -e "require('./package.json').version")"
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git checkout -b version-update-${{ steps.update_pkg_version.outputs.new_version }}
           git commit -am "Update package.json version to ${{ steps.update_pkg_version.outputs.new_version }}"
-          git push
+          git push origin version-update-${{ steps.update_pkg_version.outputs.new_version }}
