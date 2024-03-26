@@ -2,7 +2,7 @@ name: Update Package.json Version
 
 on:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened, closed]
     branches: [develop, main, stage]
 
 permissions: write-all
@@ -37,5 +37,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git checkout -b version-update-${{ steps.update_pkg_version.outputs.new_version }}
           git commit -am "Update package.json version to ${{ steps.update_pkg_version.outputs.new_version }}"
-          git push
+          git push origin version-update-${{ steps.update_pkg_version.outputs.new_version }}
