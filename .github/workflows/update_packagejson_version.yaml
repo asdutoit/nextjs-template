@@ -1,0 +1,32 @@
+name: Update Package.json Version
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [develop, main, stage]
+
+jobs:
+  update_version_and_tag:
+    # if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get latest tag
+        id: latest_tag
+        run: echo "::set-output name=tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
+
+      - name: Update package.json version
+        id: update_pkg_version
+        run: |
+          npm version patch --no-git-tag-version
+          echo "::set-output name=new_version::$(node -p -e "require('./package.json').version")"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Update package.json version to ${{ steps.update_pkg_version.outputs.new_version }}"
+          git push

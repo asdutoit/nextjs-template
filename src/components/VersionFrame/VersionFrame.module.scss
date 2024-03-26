@@ -1,0 +1,75 @@
+@import "src/figma/colors.scss";
+@import "src/figma/typography.scss";
+
+.versionBody {
+  font-size: 14px;
+  color: $neutral_gray;
+}
+
+.versionWrapper {
+  width: 212px;
+  margin: 10px;
+}
+
+.versionNumber {
+  @include typography_base;
+  color: $neutral_black;
+}
+
+.releaseDate {
+  font-weight: lighter;
+  padding-left: 10px;
+}
+
+.services {
+  margin-top: 15px;
+}
+
+.gitBranch {
+  padding-left: 10px;
+  font-weight: normal;
+}
+
+.logoWrapper {
+  width: 100%;
+  height: 80px;
+  border-radius: 4px;
+  background-color: $neutral_veryDarkGray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.adssLogo {
+  width: 180px;
+  height: 70px;
+}
+
+.versionSection {
+  margin-bottom: 20px;
+}
+
+.copyText {
+  @include typography_small;
+  margin-bottom: 20px;
+}
+
+.okButton {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 12px;
+}
+
+.okButton:hover {
+  margin-left: 0;
+}
+
+.creditsLink {
+  color: $neutral_black;
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary_default;
+  }
+}

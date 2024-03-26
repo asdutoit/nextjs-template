@@ -1,0 +1,801 @@
+$baseline: 14px;
+@mixin typography_super_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 48px;
+      font-size: 2.441em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_super {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 48px;
+      font-size: 2.441em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_large_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 40px;
+      font-size: 1.953em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_large {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 40px;
+      font-size: 1.953em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium_large_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 29.78973388671875px;
+      font-size: 1.563em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium_large_semi_bold {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 29.78973388671875px;
+      font-size: 1.563em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium_large {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 29.78973388671875px;
+      font-size: 1.563em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 24px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium_semi_bold {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 24px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_medium {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 24px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_base_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_base_link {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_base_semi_bold {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_base {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 20px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small_link {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 16px;
+      font-size: 0.8571428571428571em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_small_bold {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small_semi_bold {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small_small_caps_semi_bold {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small_small_caps {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_profileItem_name {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_managementPages_heading {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      
+    }
+@mixin typography_summary_label {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_small_label {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 12.201874732971191px;
+      font-size: 0.64em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_search_results_label {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 16px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_search_placeholder {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 20px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(136, 136, 136, 1);
+      
+      
+    }
+@mixin typography_search_input_text {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 20px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_summary_digits {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(134, 168, 63, 1);
+      
+      
+    }
+@mixin typography_mapping_digits {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_table_importStatus {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(85, 85, 85, 1);
+      
+      
+    }
+@mixin typography_overview_info {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_overview_info_lite {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(221, 221, 221, 1);
+      
+      
+    }
+@mixin typography_pipelineSource_url {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(136, 136, 136, 1);
+      
+      
+    }
+@mixin typography_pipelineSource_panelTitle {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_pipelineSource_urlTitle {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_pipelineSource_appName {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_pipelineSource_title {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_modelSelection_inactive {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 18px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(221, 221, 221, 1);
+      
+      
+    }
+@mixin typography_modelSelection_active {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 18px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_navMenu_title {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_panel_noData {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(221, 221, 221, 1);
+      
+      
+    }
+@mixin typography_label_disabled {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_panel_title {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_header_titleSecondary {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_header_titlePrimary {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_footer_linkHover {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_footer_link {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      
+    }
+@mixin typography_footer_default {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_button_clearHover {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(136, 136, 136, 1);
+      
+      
+    }
+@mixin typography_button_clearDefault {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_button_default {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_nav_heading {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_nav_hover {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_nav_default {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_tooltip_text {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(69, 134, 205, 1);
+      
+      
+    }
+@mixin typography_tooltip_heading {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_table_dropdownHierarchyHeading {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_table_dropdownItemTreeLast {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(85, 85, 85, 1);
+      
+      
+    }
+@mixin typography_table_dropdownItemTree {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(136, 136, 136, 1);
+      
+      
+    }
+@mixin typography_table_dropdownItem {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(136, 136, 136, 1);
+      
+      
+    }
+@mixin typography_table_dropdownInput {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_table_linkSecondaryHover {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_table_linkPrimaryHover {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_table_objectStatus_default {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_table_objectStatus_active {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_table_default {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_table_linkSecondary {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_overview_linkSecondary {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_overview_linkSecondary_lite {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(221, 221, 221, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_table_linkPrimary {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_overview_linkPrimary {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(235, 145, 16, 1);
+      
+      text-decoration: UNDERLINE;
+    }
+@mixin typography_table_header {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_input_findPlaceholder {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      font-style: italic;
+      
+    }
+@mixin typography_dropdown_item {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_input_default {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_label_default {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_label_lite {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 15.25234317779541px;
+      font-size: 0.8em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_topBarHeading_default {
+      font-family: 'Open Sans';
+      font-weight: 600;
+      line-height: 23.831787109375px;
+      font-size: 1.25em;
+      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 1);
+      
+      
+    }
+@mixin typography_base_default {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      line-height: 19.0654296875px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(119, 119, 119, 1);
+      
+      
+    }
+@mixin typography_code {
+      font-family: 'IBM Plex Mono';
+      font-weight: 400;
+      line-height: 20px;
+      font-size: 1em;
+      letter-spacing: 0px;
+      color: rgba(0, 0, 0, 1);
+      
+      
+    }
