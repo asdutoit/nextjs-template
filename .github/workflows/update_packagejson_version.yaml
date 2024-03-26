@@ -21,7 +21,7 @@ jobs:
       - name: Update package.json version
         id: update_pkg_version
         run: |
-          npm version patch --no-git-tag-version
+          npm version "${{ steps.latest_tag.outputs.tag }}" --no-git-tag-version
           echo "::set-output name=new_version::$(node -p -e "require('./package.json').version")"
 
       - name: Commit and push changes
