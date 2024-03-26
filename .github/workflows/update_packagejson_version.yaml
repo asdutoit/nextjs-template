@@ -18,6 +18,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
       - name: Get and update git release tag
         id: git-tag
@@ -37,6 +38,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout -b version-update-${{ steps.update_pkg_version.outputs.new_version }}
           git commit -am "Update package.json version to ${{ steps.update_pkg_version.outputs.new_version }}"
-          git push origin version-update-${{ steps.update_pkg_version.outputs.new_version }}
+          git push
