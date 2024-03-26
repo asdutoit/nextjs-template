@@ -14,14 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Get latest tag
-        id: latest_tag
-        run: echo "::set-output name=tag::$(git describe --tags $(git rev-list --tags --max-count=1))"
+      - name: Get and update git release tag
+        id: git-tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        # run: echo ::set-output name=tag::$(git describe --tags --abbrev=0 || 'latest')
+
+      - name: Print the tag
+        run: echo ${{ steps.git-tag.outputs.tag }}
 
       - name: Update package.json version
         id: update_pkg_version
         run: |
-          npm version "${{ steps.latest_tag.outputs.tag }}" --no-git-tag-version
+          npm version "${{ steps.git-tag.outputs.tag }}" --no-git-tag-version
           echo "::set-output name=new_version::$(node -p -e "require('./package.json').version")"
 
       - name: Commit and push changes
