@@ -232,6 +232,7 @@ function Customizer() {
               ...config,
               theme: "zinc",
               radius: 0.5,
+              style: "new-york",
             });
           }}
         >

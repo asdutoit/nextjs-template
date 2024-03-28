@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 import ThemeCustomizer from "@/components/theme-customizer";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["latin"],
