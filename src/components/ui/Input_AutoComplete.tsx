@@ -16,18 +16,7 @@ import {
 } from "@/components/ui/command";
 import { set } from "zod";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
-type Result = {
-  formattedAddress: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  addressComponents: {
-    shortText: string;
-    longText: string;
-  }[];
-};
+import { Result } from "@/lib/types";
 
 export default function InputAutoComplete({
   field,
@@ -119,6 +108,7 @@ export default function InputAutoComplete({
           loadSuggestedOptions(e.target.value);
         }}
         value={field.value || ""}
+        onKeyDown={handleKeyDown}
       />
       {!results
         ? null
@@ -131,11 +121,16 @@ export default function InputAutoComplete({
                     : results.map((result, index) => (
                         <div
                           key={index}
-                          className="hover:bg-accent hover:text-accent-foreground rounded-sm hover:cursor-default "
+                          className={`hover:bg-accent hover:text-accent-foreground rounded-sm hover:cursor-default ${
+                            index === selectedOptionIndex
+                              ? "bg-accent text-accent-foreground"
+                              : ""
+                          }`}
                         >
                           <li
                             className="px-3 relative flex w-full select-none items-center rounded-sm py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 "
                             onClick={() => {
+                              setSelectedOptionIndex(index);
                               field.onChange({
                                 target: { value: result.formattedAddress },
                               });
