@@ -36,6 +36,25 @@ export default function InputAutoComplete({
 }: any) {
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1);
+
+  const handleKeyDown = (e: { key: string; preventDefault: () => void }) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedOptionIndex((prevIndex) =>
+        Math.min(prevIndex + 1, results.length - 1)
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedOptionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    } else if (e.key === "Enter" && selectedOptionIndex >= 0) {
+      e.preventDefault();
+      const selectedResult = results[selectedOptionIndex];
+      field.onChange({ target: { value: selectedResult.formattedAddress } });
+      setResults([]);
+      onResultSelect(selectedResult);
+    }
+  };
 
   const loadSuggestedOptions = useCallback(
     useDebouncedCallback((inputValue: string) => {

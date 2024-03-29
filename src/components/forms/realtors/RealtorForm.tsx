@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import InputAutoComplete from "@/components/ui/InputAutoComplete";
+import InputAutoComplete from "@/components/ui/Input_AutoComplete";
 import {
   Select,
   SelectContent,
@@ -216,8 +216,25 @@ export default function RealtorForm() {
                   <FormLabel>Contact Number</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="021 975 1234"
+                      placeholder="0219751234"
                       {...field}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\s/g, "");
+                        field.onChange(value);
+                      }}
+                      onKeyDown={(e) => {
+                        if (
+                          !/[0-9]/.test(e.key) &&
+                          e.key !== "Backspace" &&
+                          e.key !== "Delete" &&
+                          e.key !== "ArrowLeft" &&
+                          e.key !== "ArrowRight" &&
+                          e.key !== "Tab" &&
+                          e.key !== "Enter"
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
                       value={field.value || ""}
                     />
                   </FormControl>
