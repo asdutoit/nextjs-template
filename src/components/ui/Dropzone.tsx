@@ -19,11 +19,14 @@ const img = {
 export default function Dropzone({
   maxFiles = 20,
   description,
+  files,
+  setFiles,
 }: {
   maxFiles?: number;
   description?: string;
+  files: any[];
+  setFiles: (files: any[]) => void;
 }) {
-  const [files, setFiles] = useState<any[]>([]);
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
       accept: {
@@ -76,7 +79,7 @@ export default function Dropzone({
       <div
         {...getRootProps({
           className: cn(
-            "bg-slate-50 flex flex-col text-center justify-center h-64 w-full rounded-md border-dashed border-2 border-slate-200 text-slate-400  transition-colors cursor-pointer p-5 outline-none transition ease-in-out duration-150 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-500",
+            "flex flex-col text-center justify-center h-64 w-full rounded-md border-dashed border-2 border-slate-200 text-slate-400  transition-colors cursor-pointer p-5 outline-none transition ease-in-out duration-150 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-500",
             isFocused ? "border-slate-300" : "",
             isDragAccept ? "border-green-500" : "",
             isDragReject ? "border-red-500" : ""

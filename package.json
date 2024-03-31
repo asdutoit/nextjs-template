@@ -24,6 +24,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@splidejs/react-splide": "^0.7.12",
     "@types/google.maps": "^3.55.5",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",

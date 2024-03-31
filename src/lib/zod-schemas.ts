@@ -72,4 +72,5 @@ export const realtorFormSchema = z.object({
   email: z.string().email({
     message: "Invalid email address.",
   }),
+  images: z.array(z.string()).optional(),
 });

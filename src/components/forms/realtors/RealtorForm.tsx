@@ -2,10 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
+import { z } from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import provincesAndStates from "@/lib/states.json";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,12 +30,15 @@ import {
 import { realtorFormSchema } from "@/lib/zod-schemas";
 import { useEffect, useState, useCallback } from "react";
 import Dropzone from "@/components/ui/Dropzone";
+import { uploadFiles } from "@/lib/api";
 
 export default function RealtorForm() {
+  const [loading, setLoading] = useState(false);
   const [provinces, setProvinces] = useState<{ code: string; name: string }[]>(
     []
   );
   const [province, setProvince] = useState<string>("");
+  const [files, setFiles] = useState<any[]>([]);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof realtorFormSchema>>({
     resolver: zodResolver(realtorFormSchema),
@@ -44,7 +46,7 @@ export default function RealtorForm() {
 
   const handleAutoCompleteSearch = useCallback(
     (result: any) => {
-      console.log(result);
+      // console.log(result);
       // Set the value of the 'address.optional_address' field to the selected address
       form.setValue("address.street_address_full", result.formattedAddress);
       // Set the values of the other fields
@@ -82,42 +84,30 @@ export default function RealtorForm() {
     }
   }, [form.watch("address.country")]);
 
-  const uploadFiles = async (files: File[]) => {
-    try {
-      // Upload the files to the server and store the urls in the form
-      const urls = await Promise.all(
-        files.map(async (file) => {
-          const formData = new FormData();
-          formData.append("file", file);
-          const response = await fetch("/api/upload", {
-            method: "POST",
-            body: formData,
-          });
-          const data = await response.json();
-          return data.url;
-        })
-      );
-      return urls;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof realtorFormSchema>) {
+  async function onSubmit(values: z.infer<typeof realtorFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
-    toast({
-      title: "Form Submitted",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white" style={{ whiteSpace: "pre-wrap" }}>
-            {JSON.stringify(values, null, 2)}
-          </code>
-        </pre>
-      ),
-    });
+    setLoading(true);
+    try {
+      await uploadFiles(files);
+      // Add images to the values object
+      values.images = files.map((file) => file.path);
+      toast({
+        title: "Form Submitted",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white" style={{ whiteSpace: "pre-wrap" }}>
+              {JSON.stringify(values, null, 2)}
+            </code>
+          </pre>
+        ),
+      });
+    } catch (error) {
+      console.log("onSubmit Error: ", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -430,7 +420,6 @@ export default function RealtorForm() {
                   <FormLabel>Province</FormLabel>
                   <Select
                     onValueChange={(value) => {
-                      console.log("Changed", value);
                       field.onChange({ target: { value } });
                     }}
                     // defaultValue={field.value}
@@ -466,9 +455,36 @@ export default function RealtorForm() {
               description={
                 "Drag and Drop your Logo here, or click to select a Logo file"
               }
+              files={files}
+              setFiles={setFiles}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={loading ? true : false}>
+            {loading && (
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            )}
+
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
         </form>
       </Form>
     </div>

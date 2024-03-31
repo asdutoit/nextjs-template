@@ -49,7 +49,7 @@ export default function InputAutoComplete({
     useDebouncedCallback((inputValue: string) => {
       if (!inputValue || inputValue.length === 0) setResults([]);
       handleAutoCompleteSearch({ searchTerm: inputValue }).then((options) => {
-        console.log(options.places);
+        // console.log(options.places);
         setResults(options.places);
         // [*].addressComponents[*].
         // -- [0].shortText: "6"
