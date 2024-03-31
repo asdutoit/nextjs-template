@@ -30,6 +30,7 @@ import {
 
 import { realtorFormSchema } from "@/lib/zod-schemas";
 import { useEffect, useState, useCallback } from "react";
+import Dropzone from "@/components/ui/Dropzone";
 
 export default function RealtorForm() {
   const [provinces, setProvinces] = useState<{ code: string; name: string }[]>(
@@ -80,6 +81,27 @@ export default function RealtorForm() {
       setProvinces(provincesAndStates[country] || []);
     }
   }, [form.watch("address.country")]);
+
+  const uploadFiles = async (files: File[]) => {
+    try {
+      // Upload the files to the server and store the urls in the form
+      const urls = await Promise.all(
+        files.map(async (file) => {
+          const formData = new FormData();
+          formData.append("file", file);
+          const response = await fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await response.json();
+          return data.url;
+        })
+      );
+      return urls;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof realtorFormSchema>) {
@@ -432,6 +454,18 @@ export default function RealtorForm() {
                   </Select>
                 </FormItem>
               )}
+            />
+          </div>
+          {/* Add section to upload images and store image urls in the form / database */}
+          <div>
+            <h4 className="text-sm font-medium leading-none mb-2">
+              Upload Logo
+            </h4>
+            <Dropzone
+              // maxFiles={3}
+              description={
+                "Drag and Drop your Logo here, or click to select a Logo file"
+              }
             />
           </div>
           <Button type="submit">Submit</Button>
