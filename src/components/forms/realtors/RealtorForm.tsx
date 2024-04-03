@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { mapAddressComponentToFormField } from "@/lib/utils";
 import { realtorFormSchema } from "@/lib/zod-schemas";
 import { useEffect, useState, useCallback } from "react";
 import Dropzone from "@/components/ui/Dropzone";
@@ -46,27 +46,45 @@ export default function RealtorForm() {
 
   const handleAutoCompleteSearch = useCallback(
     (result: any) => {
-      // console.log(result);
+      console.log(result);
+      // Map the address components to the form fields
+      const formFields = mapAddressComponentToFormField(result);
+      console.log("formFields: ", formFields);
+
       // Set the value of the 'address.optional_address' field to the selected address
       form.setValue("address.street_address_full", result.formattedAddress);
       // Set the values of the other fields
       form.setValue(
         "address.street_address",
-        result.addressComponents[1].longText
+        formFields.street_address || result.addressComponents[1].longText
       );
       form.setValue(
         "address.street_number",
-        result.addressComponents[0].shortText
+        formFields.street_number || result.addressComponents[0].longText
       );
       form.setValue("address.coordinates", result.location);
-      form.setValue("address.suburb", result.addressComponents[2].longText);
-      form.setValue("address.city", result.addressComponents[3].longText);
+      form.setValue(
+        "address.suburb",
+        formFields.suburb || result.addressComponents[2].longText
+      );
+      form.setValue(
+        "address.city",
+        formFields.city || result.addressComponents[3].longText
+      );
       form.setValue(
         "address.postal_code",
-        parseInt(result.addressComponents[7].shortText)
+        parseInt(formFields.postal_code || result.addressComponents[4].longText)
       );
-      form.setValue("address.country", result.addressComponents[6].shortText);
-      setProvince(result.addressComponents[5].shortText);
+      form.setValue(
+        "address.country",
+        formFields.country || result.addressComponents[6].longText
+      );
+      form.setValue("address.sub_state", formFields.sub_state || ""),
+        form.setValue(
+          "address.optional_address",
+          formFields.optional_address || ""
+        );
+      setProvince(formFields.state || result.addressComponents[5].longText);
       // ... set the values of the other fields
     },
     [form.setValue]
@@ -105,6 +123,11 @@ export default function RealtorForm() {
       });
     } catch (error) {
       console.log("onSubmit Error: ", error);
+      toast({
+        variant: "destructive",
+        title: "An error occurred",
+        description: "Please try again.",
+      });
     } finally {
       setLoading(false);
     }

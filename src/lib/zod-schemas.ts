@@ -20,6 +20,7 @@ export const addressSchema = z.object({
   state: z.string().min(2, {
     message: "State must be at least 2 characters.",
   }),
+  sub_state: z.string().optional(),
   postal_code: z.number().min(4, {
     message: "Postal code must be at least 4 characters.",
   }),
@@ -33,7 +34,7 @@ export const addressSchema = z.object({
     .enum([
       "ZA", // South Africa
       "US", // United States
-      "GB", // United Kingdom
+      "GB", // Great Britain
       // Add more country codes as needed
     ])
     // @ts-ignore
