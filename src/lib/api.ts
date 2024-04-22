@@ -12,7 +12,7 @@ export const uploadFiles = async (files: (string | Blob)[]) => {
         method: "POST",
         body: formData,
         headers: {
-          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtvb3Nrb21idWlzQGdtYWlsLmNvbSIsImV4cCI6MTcxMTk2ODYzMywidXNlcklkIjoxfQ.kKX1dBVHLBvHD4dbLY0JHSTc6o51VVbWGhnc1WqfRog`,
+          Authorization: process.env.NEXT_PUBLIC_AUTH_TOKEN || "",
         },
       }
     );

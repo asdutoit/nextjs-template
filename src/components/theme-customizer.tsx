@@ -63,11 +63,11 @@ export default function ThemeCustomizer() {
   }, [config, mode, setTheme]);
 
   return (
-    <div className="fixed right-0 z-50 m-5">
+    <div className="fixed right-0 z-50 m-5 top-12">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" className="shadow-sm">
-            Open popover
+            Customise Theme
           </Button>
         </PopoverTrigger>
         <PopoverContent className="mr-5 w-auto">

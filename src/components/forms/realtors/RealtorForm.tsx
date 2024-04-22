@@ -104,8 +104,6 @@ export default function RealtorForm() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof realtorFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     setLoading(true);
     try {
       await uploadFiles(files);
@@ -474,7 +472,8 @@ export default function RealtorForm() {
               Upload Logo
             </h4>
             <Dropzone
-              // maxFiles={3}
+              maxFiles={1}
+              allowedTypes={{ "image/*": [] }}
               description={
                 "Drag and Drop your Logo here, or click to select a Logo file"
               }

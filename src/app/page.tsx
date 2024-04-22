@@ -10,7 +10,6 @@ import { ThemeWrapper } from "@/components/theme-wrapper";
 import { useConfig } from "@/hooks/use-config";
 
 export default function Home() {
-  const [config] = useConfig();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-12">
       <ThemeWrapper>
