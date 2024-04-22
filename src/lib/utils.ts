@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Result, FormFields } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -87,4 +88,56 @@ export const myLoader = ({
     return `https://${process.env.NEXT_PUBLIC_DISTRIBUTION}.cloudfront.net/${src}?format=auto&quality=${quality}&width=${width}`;
   } else
     return `https://${process.env.NEXT_PUBLIC_DISTRIBUTION}.cloudfront.net/${src}?format=auto&width=${width}`;
+};
+
+export const mapAddressComponentToFormField = (result: Result): FormFields => {
+  // Create a mapping between address component types and form fields
+  const typeToFormField: { [key: string]: keyof FormFields } = {
+    street_number: "street_number",
+    route: "street_address",
+    locality: "city",
+    sublocality: "suburb",
+    neighborhood: "suburb",
+    administrative_area_level_1: "state",
+    administrative_area_level_2: "sub_state",
+    subpremise: "optional_address",
+    country: "country",
+    postal_code: "postal_code",
+  };
+
+  // Initialize the form fields
+  let formFields: FormFields = {
+    street_address: "",
+    city: "",
+    street_number: "",
+    suburb: "",
+    postal_code: 0,
+    state: "",
+    country: "",
+    optional_address: "",
+    sub_state: "",
+  };
+
+  // Loop through the address components
+  for (const addressComponent of result.addressComponents) {
+    // Loop through the types of the current address component
+    for (const type of addressComponent.types) {
+      // If the current type has a corresponding form field
+      if (type in typeToFormField) {
+        if (type === "administrative_area_level_1" || type === "country") {
+          // Set the form field to the short text of the current address component
+          console.log(
+            "formFields[typeToFormField[type]]",
+            formFields[typeToFormField[type]]
+          );
+          formFields[typeToFormField[type]] = addressComponent.shortText;
+        } else {
+          // Set the form field to the long text of the current address component
+          formFields[typeToFormField[type]] = addressComponent.longText;
+        }
+      }
+    }
+  }
+
+  return formFields;
 };
