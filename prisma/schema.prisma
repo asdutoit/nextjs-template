@@ -9,39 +9,132 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String    @unique
-  title    String
-  body     String
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId
-  comments Comment[]
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
 }
 
 model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  id      Int      @id @default(autoincrement())
   email   String   @unique
   name    String?
-  address Address?
   posts   Post[]
+  profile Profile?
 }
 
-model Comment {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  comment String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  String @db.ObjectId
+// Agency represents a real estate agency
+model Agency {
+  agency_id             Int      @id @default(autoincrement())
+  name                  String
+  website               String?
+  phone                 String?
+  registeration_number  String?
+  vat_number            String?
+  email                 String?
+  address_street_full   String?
+  address_street        String?
+  address_street_number String?
+  address_optional      String?
+  address_city          String?
+  address_state         String?
+  address_postal_code   String?
+  address_suburb        String?
+  address_country       String?
+  address_sub_state     String?
+  address_lat           Float?
+  address_long          Float?
+  images                String[]
+
+  // Define a one-to-many relationship with branches
+  branches Branch[]
+  Listing  Listing[]
 }
 
-// Address is an embedded document
-type Address {
-  street String
-  city   String
-  state  String
-  zip    String
+// Branch represents a branch of an agency
+model Branch {
+  branch_id    Int     @id @default(autoincrement())
+  agency_id    Int
+  location     String
+  contact_info String?
+
+  // Define a one-to-many relationship with agents
+  agents Agent[]
+  // Define a many-to-one relationship with agencies
+  agency Agency  @relation(fields: [agency_id], references: [agency_id])
+}
+
+// Agent represents a real estate agent
+model Agent {
+  agent_id     Int     @id @default(autoincrement())
+  branch_id    Int
+  name         String
+  contact_info String?
+
+  // Define a many-to-one relationship with branches
+  branch  Branch    @relation(fields: [branch_id], references: [branch_id])
+  Listing Listing[]
+}
+
+// Property represents a property listing
+model Property {
+  property_id Int     @id @default(autoincrement())
+  type        String
+  address     String
+  price       Float
+  description String?
+
+  // Define a many-to-many relationship with agencies through listings
+  listings Listing[]
+}
+
+// Listing represents a property listing by an agency
+model Listing {
+  listing_id   Int       @id @default(autoincrement())
+  property_id  Int
+  agency_id    Int
+  agent_id     Int
+  lister_type  String
+  sole_mandate Boolean
+  start_date   DateTime
+  end_date     DateTime?
+
+  // Define a many-to-one relationship with properties
+  property Property @relation(fields: [property_id], references: [property_id])
+  // Define a many-to-one relationship with agencies
+  agency   Agency   @relation(fields: [agency_id], references: [agency_id])
+  // Define a many-to-one relationship with agents
+  agent    Agent    @relation(fields: [agent_id], references: [agent_id])
+
+  // Define a one-to-many relationship with property sale history
+  sales Sale[]
+}
+
+// Sale represents a property sale record
+model Sale {
+  sale_id    Int      @id @default(autoincrement())
+  listing_id Int
+  sale_date  DateTime
+  sale_price Float
+  buyer_id   Int
+  seller_id  Int
+
+  // Define a many-to-one relationship with listings
+  listing Listing @relation(fields: [listing_id], references: [listing_id])
 }

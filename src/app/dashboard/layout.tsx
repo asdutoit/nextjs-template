@@ -1,6 +1,5 @@
 "use client";
 
-import { ThemeWrapper } from "@/components/theme-wrapper";
 import React from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -20,7 +19,6 @@ import {
   LineChart,
   Menu,
   Package,
-  Package2,
   Search,
   ShoppingCart,
   Users,
