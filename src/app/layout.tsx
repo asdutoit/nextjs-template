@@ -67,6 +67,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ThemeCustomizer />
+
           <main>{children}</main>
           <Toaster />
         </ThemeProvider>

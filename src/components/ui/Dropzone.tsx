@@ -38,10 +38,10 @@ export default function Dropzone({
   const thumbs = files.map((file) => (
     <div
       key={file.name}
-      className="h-64 border-2 border-slate-100 p-1 box-border rounded-md relative overflow-hidden"
+      className="h-64 border-2 border-slate-100 p-1 box-border rounded-md relative"
     >
       <CrossCircledIcon
-        className="transition ease-in-out w-6 h-6 text-black bg-white rounded-full shadow-sm antialiased absolute right-0 top-0 hover:scale-110 hover:cursor-pointer z-10"
+        className="transition ease-in-out w-6 h-6 text-white bg-black rounded-full shadow-sm antialiased absolute right-0 top-0 hover:scale-110 hover:cursor-pointer z-10"
         onClick={() => handleRemove(file.name)}
       />
       {file.type.startsWith("video") ? (

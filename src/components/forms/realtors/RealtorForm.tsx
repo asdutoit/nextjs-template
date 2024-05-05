@@ -132,7 +132,7 @@ export default function RealtorForm() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-auto px-1">
       <div>
         <h3 className="text-lg font-medium">Realtor Registration</h3>
         <p className="text-sm text-muted-foreground">
