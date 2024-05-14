@@ -14,6 +14,7 @@ const nextConfig = {
       "images.unsplash.com",
       "unsplash.com",
       "dz0iwcgjpo74k.cloudfront.net",
+      "lh3.googleusercontent.com",
     ],
   },
 };

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { ComponentType } from "react";
 
@@ -6,33 +7,58 @@ interface LogoInterface {
   height?: string;
   alt?: string;
   userLogoUrl?: string;
+  isScrolled?: boolean;
+  defaultdark?: boolean;
 }
 
-function Logo({ width, height, alt, userLogoUrl }: LogoInterface) {
+function Logo({
+  width = "0",
+  height = "0",
+  alt = "",
+  userLogoUrl,
+  isScrolled = false,
+  defaultdark = true,
+}: LogoInterface) {
   return userLogoUrl ? (
     <Image
       src={userLogoUrl}
-      height={100}
-      width={1472}
+      height={parseInt(height)}
+      width={parseInt(width)}
       alt=""
       // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
   ) : (
-    <DefaultLogo width={width} height={height} />
+    <DefaultLogo
+      width={width}
+      height={height}
+      isScrolled={isScrolled}
+      defaultdark={defaultdark}
+    />
   );
 }
 
-function DefaultLogo({ width = "100%", height = "100%" }: LogoInterface) {
+function DefaultLogo({
+  width = "100%",
+  height = "100%",
+  isScrolled,
+  defaultdark,
+}: LogoInterface) {
   return (
     <svg
-      width={width}
-      height={height}
+      width={`${width + "px"}`}
+      height={`${height + "px"}`}
       viewBox="0 0 448 126"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       xmlSpace="preserve"
-      className="fill-black dark:fill-white"
+      className={cn(
+        isScrolled
+          ? "fill-black dark:fill-white"
+          : !defaultdark
+          ? "fill-black dark:fill-white"
+          : "fill-white dark:fill-white"
+      )}
       style={{
         fillRule: "evenodd",
         clipRule: "evenodd",

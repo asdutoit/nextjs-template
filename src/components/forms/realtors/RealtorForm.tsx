@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/inputClient";
 import InputAutoComplete from "@/components/ui/Input_AutoComplete";
 import {
   Select,
@@ -132,7 +132,7 @@ export default function RealtorForm() {
   }
 
   return (
-    <div className="space-y-6 overflow-auto px-1">
+    <div className="space-y-6 p-2 pb-12">
       <div>
         <h3 className="text-lg font-medium">Realtor Registration</h3>
         <p className="text-sm text-muted-foreground">

@@ -4,30 +4,67 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import UserProfileToggle from "@/components/ui/userProfileToggle";
 import Link from "next/link";
 import {
-  CircleUser,
+  Building,
   Home,
+  LayoutDashboard,
   LineChart,
   Menu,
   Package,
   Search,
   ShoppingCart,
+  User,
   Users,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/inputClient";
 import Logo from "@/components/Logo";
+
+type DashboardItem = {
+  title: string;
+  href: string;
+  icon: () => JSX.Element;
+};
+
+export const dashboardItems: DashboardItem[] = [
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+    icon: () => <LayoutDashboard className="h-4 w-4" />,
+  },
+  {
+    title: "Orders",
+    href: "/dashboard/orders",
+    icon: () => <ShoppingCart className="h-4 w-4" />,
+  },
+  {
+    title: "Products",
+    href: "/dashboard/products",
+    icon: () => <Package className="h-4 w-4" />,
+  },
+  {
+    title: "Customers",
+    href: "/dashboard/customers",
+    icon: () => <Users className="h-4 w-4" />,
+  },
+  {
+    title: "Analytics",
+    href: "/dashboard/analytics",
+    icon: () => <LineChart className="h-4 w-4" />,
+  },
+];
+
+//TODO: Replace with actual user data
+const user = {
+  belongTo: "organization",
+  // belongTo: "private",
+  role: "admin",
+  organisation: {
+    logo: "",
+  },
+};
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -47,67 +84,37 @@ export default function DashboardHeader() {
               href="/"
               className="flex items-center gap-2 text-lg font-semibold mb-4"
             >
-              <Logo fill="hsl(var(--primary))" height="40px" width="160" />
+              <Logo height="40" width="160" />
             </Link>
-            <Link
-              href="/dashboard"
-              className={cn(
-                `${
-                  pathname === "/dashboard"
-                    ? "bg-muted text-primary"
+            {dashboardItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-2 text-lg",
+                  pathname === item.href
+                    ? "text-primary"
                     : "text-muted-foreground"
-                }`,
-                "mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-primary"
-              )}
-            >
-              <Home className="h-5 w-5" />
-              Dashboard
-            </Link>
-            <Link
-              href="/dashboard/orders"
-              className={cn(
-                `${
-                  pathname === "/dashboard/orders"
-                    ? "bg-muted text-primary"
+                )}
+              >
+                {item.icon()}
+                <span>{item.title}</span>
+              </Link>
+            ))}
+            {user.belongTo === "organization" && user.role === "admin" && (
+              <Link
+                href="/dashboard/branches"
+                className={cn(
+                  "flex items-center gap-2 text-lg",
+                  pathname === "/dashboard/branches"
+                    ? "text-primary"
                     : "text-muted-foreground"
-                }`,
-                "mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-primary"
-              )}
-            >
-              <ShoppingCart className="h-5 w-5" />
-              Orders
-              <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                6
-              </Badge>
-            </Link>
-            <Link
-              href="/dashboard/products"
-              className={cn(
-                `${
-                  pathname === "/dashboard/products"
-                    ? "bg-muted text-foreground"
-                    : "text-muted-foreground"
-                }`,
-                "mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground"
-              )}
-            >
-              <Package className="h-5 w-5" />
-              Products
-            </Link>
-            <Link
-              href="/dashboard/customers"
-              className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-            >
-              <Users className="h-5 w-5" />
-              Customers
-            </Link>
-            <Link
-              href="/dashboard/analytics"
-              className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-            >
-              <LineChart className="h-5 w-5" />
-              Analytics
-            </Link>
+                )}
+              >
+                <Building className="h-4 w-4" />
+                Branches
+              </Link>
+            )}
           </nav>
         </SheetContent>
       </Sheet>
@@ -123,22 +130,7 @@ export default function DashboardHeader() {
           </div>
         </form>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <CircleUser className="h-5 w-5" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <UserProfileToggle />
     </header>
   );
 }

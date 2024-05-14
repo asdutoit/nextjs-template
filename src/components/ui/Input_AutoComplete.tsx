@@ -1,20 +1,7 @@
 "use client";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/inputClient";
 import { useDebouncedCallback } from "use-debounce";
 import { useCallback, useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import { set } from "zod";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Result } from "@/lib/types";
 

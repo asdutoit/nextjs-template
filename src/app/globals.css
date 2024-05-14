@@ -104,3 +104,7 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+.without-ring {
+  @apply focus:ring-0 focus:ring-offset-0;
+}

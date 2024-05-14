@@ -13,8 +13,11 @@ import {
   Handshake,
   Home,
   HomeIcon,
+  LayoutDashboard,
+  LifeBuoy,
   Settings,
   ShoppingCart,
+  SquareUser,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -26,33 +29,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import Image from "next/image";
 
 //TODO: Replace with actual user data
 const user = {
-  // belongTo: "organization",
-  belongTo: "private",
+  belongTo: "organization",
+  // belongTo: "private",
   role: "admin",
   organisation: {
-    logo: "",
+    logo: "/pam_golding_demo.png",
   },
 };
 
 export default function SideBar() {
   const pathname = usePathname();
   return (
-    <div className="hidden border-r bg-muted/40 md:block relative h-full w-64">
+    <div className="hidden border-r bg-muted/40 md:block h-full w-64">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-16 items-center border-b px-4 lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            {user.belongTo === "organization" && user.organisation.logo ? (
-              <img
-                src={user.organisation.logo}
-                alt="logo"
-                className="h-10 w-8 rounded-lg"
-              />
-            ) : (
-              <Logo height="40px" width="160" />
-            )}
+            <Logo height="40" width="160" defaultdark={false} />
           </Link>
           <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
             <Bell className="h-4 w-4" />
@@ -72,7 +73,7 @@ export default function SideBar() {
                 "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary"
               )}
             >
-              <Home className="h-4 w-4" />
+              <LayoutDashboard className="h-4 w-4" />
               Dashboard
             </Link>
             <Link
@@ -133,11 +134,19 @@ export default function SideBar() {
         </div>
         <div className="mt-auto p-4">
           <Link
-            href="/dashboard/settings"
+            href="/dashboard/help"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            aria-label="Help"
+          >
+            <LifeBuoy className="h-4 w-4" />
+            Help
+          </Link>
+          <Link
+            href="/dashboard/profile"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
           >
-            <Settings className="h-4 w-4" />
-            Settings
+            <SquareUser className="h-4 w-4" />
+            Profile
           </Link>
           <Card>
             <CardHeader className="p-2 pt-0 md:p-4">
