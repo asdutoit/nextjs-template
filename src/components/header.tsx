@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, Package2, Search } from "lucide-react";
+import { Menu, Package2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/inputClient";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import UserProfileToggle from "@/components/ui/userProfileToggle";
 import Logo from "./Logo";
@@ -37,59 +36,62 @@ export function Header() {
           isScrolled ? "bg-background border-b" : "bg-transparent"
         )}
       >
-        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 justify-between">
           <Link
             href="/"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <Logo height="40" width="160" isScrolled={isScrolled} />
           </Link>
-          <Link
-            href="/dashboard"
-            className={cn(
-              "transition-colors hover:text-foreground",
-              isScrolled ? "text-foreground" : "text-white"
-            )}
-          >
-            Dashboard
-          </Link>
-          <Link
-            href="#"
-            className={cn(
-              "transition-colors hover:text-foreground",
-              isScrolled ? "text-foreground" : "text-white"
-            )}
-          >
-            Orders
-          </Link>
-          <Link
-            href="#"
-            className={cn(
-              "transition-colors hover:text-foreground",
-              isScrolled ? "text-foreground" : "text-white"
-            )}
-          >
-            Products
-          </Link>
-          <Link
-            href="#"
-            className={cn(
-              "transition-colors hover:text-foreground",
-              isScrolled ? "text-foreground" : "text-white"
-            )}
-          >
-            Customers
-          </Link>
-          <Link
-            href="#"
-            className={cn(
-              "transition-colors hover:text-foreground",
-              isScrolled ? "text-foreground" : "text-white"
-            )}
-          >
-            Analytics
-          </Link>
+          <div className="flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center">
+            <Link
+              href="/dashboard"
+              className={cn(
+                "transition-colors hover:text-foreground",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="#"
+              className={cn(
+                "transition-colors hover:text-foreground",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
+            >
+              Orders
+            </Link>
+            <Link
+              href="#"
+              className={cn(
+                "transition-colors hover:text-foreground",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
+            >
+              Products
+            </Link>
+            <Link
+              href="#"
+              className={cn(
+                "transition-colors hover:text-foreground",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
+            >
+              Customers
+            </Link>
+            <Link
+              href="#"
+              className={cn(
+                "transition-colors hover:text-foreground",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
+            >
+              Analytics
+            </Link>
+          </div>
         </nav>
+
         <Sheet>
           <SheetTrigger asChild>
             <Button

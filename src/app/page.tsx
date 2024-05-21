@@ -33,7 +33,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="w-full px-16 flex justify-center">
-                    <div className="sm:w-96 md:w-[650px] lg:w-[1000px] self-center pt-40 xl:w-full ">
+                    <div className="sm:w-96 md:w-[600px] lg:w-[1000px] self-center pt-40 xl:w-full ">
                       <LandingPageSearch />
                     </div>
                   </div>
